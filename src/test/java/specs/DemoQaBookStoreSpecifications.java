@@ -9,20 +9,15 @@ import static helpers.CustomAllureListener.withCustomTemplates;
 import static io.restassured.RestAssured.with;
 import static io.restassured.http.ContentType.JSON;
 
-public class ReqresSpecifications {
+public class DemoQaBookStoreSpecifications {
     public static ResponseSpecification response200 = new ResponseSpecBuilder()
             .expectStatusCode(200)
             .log(LogDetail.STATUS)
             .log(LogDetail.ALL)
             .build();
 
-    public static ResponseSpecification response204 = new ResponseSpecBuilder()
-            .expectStatusCode(204)
-            .log(LogDetail.STATUS)
-            .log(LogDetail.ALL)
-            .build();
 
-    public static RequestSpecification commonRequest = with()
+    public static RequestSpecification demoQaBookStoreLoginRequest = with()
             .filter(withCustomTemplates())
             .contentType(JSON)
             .log().all();

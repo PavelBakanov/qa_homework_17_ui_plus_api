@@ -1,0 +1,30 @@
+package api.autorization;
+
+import data.LoginData;
+import io.restassured.http.ContentType;
+import models.LoginRequestModel;
+import models.LoginResponseModel;
+
+import static io.restassured.RestAssured.given;
+import static specs.DemoQaBookStoreSpecifications.demoQaBookStoreLoginRequest;
+import static specs.DemoQaBookStoreSpecifications.response200;
+
+public class AutorizationApi {
+    public static LoginResponseModel getAutorizationCookie() {
+        LoginRequestModel request = new LoginRequestModel();
+        LoginData loginData = new LoginData();
+        request.setUserName(loginData.getUserName());
+        request.setPassword(loginData.getPassword());
+
+        return given(demoQaBookStoreLoginRequest)
+                .contentType(ContentType.JSON)
+                .body(request)
+
+                .when()
+                .post("/Account/v1/Login")
+
+                .then()
+                .spec(response200)
+                .extract().as(LoginResponseModel.class);
+    }
+}
