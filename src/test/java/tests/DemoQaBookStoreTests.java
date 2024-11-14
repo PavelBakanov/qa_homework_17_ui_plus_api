@@ -30,9 +30,6 @@ public class DemoQaBookStoreTests extends TestBase {
             ProfilePage.openPage();
             ProfilePage.checkThatTheBookDeletedUI();
         });
-
-
     }
-
 }
 
