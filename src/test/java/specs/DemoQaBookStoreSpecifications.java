@@ -16,10 +16,30 @@ public class DemoQaBookStoreSpecifications {
             .log(LogDetail.ALL)
             .build();
 
+    public static ResponseSpecification response204 = new ResponseSpecBuilder()
+            .expectStatusCode(204)
+            .log(LogDetail.STATUS)
+            .log(LogDetail.ALL)
+            .build();
+    public static ResponseSpecification response201 = new ResponseSpecBuilder()
+            .expectStatusCode(201)
+            .log(LogDetail.STATUS)
+            .log(LogDetail.ALL)
+            .build();
 
-    public static RequestSpecification demoQaBookStoreLoginRequest = with()
+    public static ResponseSpecification response400 = new ResponseSpecBuilder()
+            .expectStatusCode(400)
+            .log(LogDetail.STATUS)
+            .log(LogDetail.ALL)
+            .build();
+
+    public static RequestSpecification demoQaBookStoreWithJsonRequest = with()
             .filter(withCustomTemplates())
             .contentType(JSON)
+            .log().all();
+
+    public static RequestSpecification demoQaBookStoreCommonRequest = with()
+            .filter(withCustomTemplates())
             .log().all();
 
 }

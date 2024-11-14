@@ -1,6 +1,7 @@
 package helpers.extensions;
 
 import api.authorization.AuthorizationApi;
+import data.AuthData;
 import data.LoginData;
 import models.LoginResponseModel;
 import org.junit.jupiter.api.extension.BeforeEachCallback;
@@ -15,12 +16,18 @@ import static io.qameta.allure.Allure.step;
 
 public class LoginExtension implements BeforeEachCallback {
 
+
     @Override
     public void beforeEach(ExtensionContext context) {
-        LoginResponseModel cookies = AuthorizationApi.getAuthorizationCookie();
         LoginData loginData = new LoginData();
+        LoginResponseModel cookies = AuthorizationApi.getAuthorizationCookie();
 
-        step("Добавить полученные из ответа cookie к текущему браузеру, что бы залогиниться", () -> {
+        AuthData.USER_ID = cookies.getUserId();
+        AuthData.EXPIRES = cookies.getExpires();
+        AuthData.USER_TOKEN = cookies.getToken();
+
+        step("Добавить полученные из ответа cookie к текущему браузеру, " +
+                "что бы можно было проверить успешный вход в учетную запись", () -> {
             open("/favicon.ico");
             getWebDriver().manage().addCookie(new Cookie("userID", cookies.getUserId()));
             getWebDriver().manage().addCookie(new Cookie("expires", cookies.getExpires()));
@@ -32,6 +39,7 @@ public class LoginExtension implements BeforeEachCallback {
                     $("#userName-value").shouldHave(text(loginData.getUserName()));
                 }
         );
+
     }
 
 }
