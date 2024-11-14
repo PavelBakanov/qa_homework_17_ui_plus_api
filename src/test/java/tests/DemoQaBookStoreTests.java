@@ -1,12 +1,15 @@
 package tests;
 
-import api.demoqa_book_store.BookStoreApi;
+import api.AccountApi;
+import api.BookStoreApi;
 import helpers.extensions.WithLogin;
+import models.GetListOfBooksResponseModel;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pages.ProfilePage;
 
 import static io.qameta.allure.Allure.step;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayName("Тесты книжного магазина с сайта demoqa.com")
 public class DemoQaBookStoreTests extends TestBase {
@@ -26,9 +29,14 @@ public class DemoQaBookStoreTests extends TestBase {
             ProfilePage.deleteCertainBook();
         });
 
-        step("Проверить, что книга удалена", () -> {
+        step("Проверить, что книга удалена, через UI", () -> {
             ProfilePage.openPage();
             ProfilePage.checkThatTheBookDeletedUI();
+        });
+
+        step("Получить список книг в корзине, и проверить, что книга удалена, через API", () -> {
+            GetListOfBooksResponseModel response = AccountApi.getListOfBooks();
+            assertThat(response.getBooks()).isEmpty();
         });
     }
 }

@@ -1,6 +1,6 @@
 package helpers.extensions;
 
-import api.authorization.AuthorizationApi;
+import api.AuthorizationApi;
 import data.AuthData;
 import data.LoginData;
 import models.LoginResponseModel;

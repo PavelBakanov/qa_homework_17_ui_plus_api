@@ -1,4 +1,4 @@
-package api.demoqa_book_store;
+package api;
 
 import models.AddListOfBooksRequestModel;
 import models.IsbnModel;
