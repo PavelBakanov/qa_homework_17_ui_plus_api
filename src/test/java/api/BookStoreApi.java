@@ -25,7 +25,8 @@ public class BookStoreApi {
                     .delete("/BookStore/v1/Books")
 
                     .then()
-                    .spec(response204);
+                    .spec(responseLogging)
+                    .statusCode(204);
         });
     }
 
@@ -47,7 +48,8 @@ public class BookStoreApi {
                     .post("/BookStore/v1/Books")
 
                     .then()
-                    .spec(response201);
+                    .spec(responseLogging)
+                    .statusCode(201);
         });
     }
 }

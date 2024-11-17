@@ -39,6 +39,7 @@ dependencies {
             "io.qameta.allure:allure-rest-assured:$allureVersion",
             'org.assertj:assertj-core:3.26.3',
             "com.codeborne:selenide:$selenideVersion",
+            'io.qameta.allure:allure-selenide:2.19.0'
 
     )
     testRuntimeOnly('org.junit.jupiter:junit-jupiter-engine:5.11.1')

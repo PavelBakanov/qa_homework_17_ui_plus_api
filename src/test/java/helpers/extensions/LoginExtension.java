@@ -1,6 +1,6 @@
 package helpers.extensions;
 
-import api.AuthorizationApi;
+import api.AccountApi;
 import data.AuthData;
 import models.LoginResponseModel;
 import org.junit.jupiter.api.extension.BeforeEachCallback;
@@ -18,7 +18,7 @@ public class LoginExtension implements BeforeEachCallback {
 
     @Override
     public void beforeEach(ExtensionContext context) {
-        LoginResponseModel cookies = AuthorizationApi.getAuthorizationCookie();
+        LoginResponseModel cookies = AccountApi.getAuthorizationCookie();
 
         AuthData.USER_ID = cookies.getUserId();
         AuthData.EXPIRES = cookies.getExpires();

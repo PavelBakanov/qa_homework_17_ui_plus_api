@@ -10,25 +10,8 @@ import static io.restassured.RestAssured.with;
 import static io.restassured.http.ContentType.JSON;
 
 public class DemoQaBookStoreSpecifications {
-    public static ResponseSpecification response200 = new ResponseSpecBuilder()
-            .expectStatusCode(200)
-            .log(LogDetail.STATUS)
-            .log(LogDetail.ALL)
-            .build();
 
-    public static ResponseSpecification response204 = new ResponseSpecBuilder()
-            .expectStatusCode(204)
-            .log(LogDetail.STATUS)
-            .log(LogDetail.ALL)
-            .build();
-    public static ResponseSpecification response201 = new ResponseSpecBuilder()
-            .expectStatusCode(201)
-            .log(LogDetail.STATUS)
-            .log(LogDetail.ALL)
-            .build();
-
-    public static ResponseSpecification response400 = new ResponseSpecBuilder()
-            .expectStatusCode(400)
+    public static ResponseSpecification responseLogging = new ResponseSpecBuilder()
             .log(LogDetail.STATUS)
             .log(LogDetail.ALL)
             .build();
