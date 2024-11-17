@@ -1,6 +1,5 @@
 package api;
 
-import data.LoginData;
 import models.LoginRequestModel;
 import models.LoginResponseModel;
 

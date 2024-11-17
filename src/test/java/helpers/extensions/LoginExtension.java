@@ -2,7 +2,6 @@ package helpers.extensions;
 
 import api.AuthorizationApi;
 import data.AuthData;
-import data.LoginData;
 import models.LoginResponseModel;
 import org.junit.jupiter.api.extension.BeforeEachCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
@@ -19,7 +18,6 @@ public class LoginExtension implements BeforeEachCallback {
 
     @Override
     public void beforeEach(ExtensionContext context) {
-        LoginData loginData = new LoginData();
         LoginResponseModel cookies = AuthorizationApi.getAuthorizationCookie();
 
         AuthData.USER_ID = cookies.getUserId();
@@ -36,7 +34,7 @@ public class LoginExtension implements BeforeEachCallback {
 
         step("Проверить успешный вход в учетную запись", () -> {
                     open("/profile");
-                    $("#userName-value").shouldHave(text(loginData.getUserName()));
+                    $("#userName-value").shouldHave(text(System.getProperty("bookStoreLogin")));
                 }
         );
 
