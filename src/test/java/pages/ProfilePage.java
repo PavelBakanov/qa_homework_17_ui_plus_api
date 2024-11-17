@@ -12,7 +12,7 @@ public class ProfilePage {
 
     public static void deleteCertainBook() {
         $("#delete-record-undefined").scrollTo().click();
-        $("#closeSmallModal-ok").click();
+        $("#closeSmallModal-ok").scrollTo().click();
     }
 
     public static void checkThatTheBookDeletedUI() {
