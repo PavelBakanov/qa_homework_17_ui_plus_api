@@ -11,7 +11,7 @@ public class ProfilePage {
     }
 
     public static void deleteCertainBook() {
-        $("#delete-record-undefined").click();
+        $("#delete-record-undefined").scrollTo().click();
         $("#closeSmallModal-ok").click();
     }
 
