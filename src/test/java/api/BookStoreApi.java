@@ -27,7 +27,6 @@ public class BookStoreApi {
                     .then()
                     .spec(response204);
         });
-
     }
 
     public static void addBookToList(String isbn) {
@@ -50,6 +49,5 @@ public class BookStoreApi {
                     .then()
                     .spec(response201);
         });
-
     }
 }
