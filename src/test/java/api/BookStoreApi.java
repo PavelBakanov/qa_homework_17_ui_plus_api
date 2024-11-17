@@ -5,11 +5,11 @@ import models.IsbnModel;
 
 import java.util.List;
 
-import static data.AuthData.USER_ID;
-import static data.AuthData.USER_TOKEN;
+import static helpers.extensions.LoginExtension.cookies;
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
-import static specs.DemoQaBookStoreSpecifications.*;
+import static specs.DemoQaBookStoreSpecifications.demoQaBookStoreWithJsonRequest;
+import static specs.DemoQaBookStoreSpecifications.responseLogging;
 
 public class BookStoreApi {
 
@@ -18,8 +18,8 @@ public class BookStoreApi {
 
         step("Сделать запрос удаления определенной книги из корзины", () -> {
             given(demoQaBookStoreWithJsonRequest)
-                    .header("Authorization", "Bearer " + USER_TOKEN)
-                    .queryParam("UserId", USER_ID)
+                    .header("Authorization", "Bearer " + cookies.getToken())
+                    .queryParam("UserId", cookies.getUserId())
 
                     .when()
                     .delete("/BookStore/v1/Books")
@@ -35,13 +35,13 @@ public class BookStoreApi {
         AddListOfBooksRequestModel request = new AddListOfBooksRequestModel();
         IsbnModel isbnModel = new IsbnModel();
         isbnModel.setIsbn(isbn);
-        request.setUserId(USER_ID);
+        request.setUserId(cookies.getUserId());
         request.setCollectionOfIsbns(List.of(isbnModel));
 
 
         step("Сделать запрос добавления книги в корзину", () -> {
             given(demoQaBookStoreWithJsonRequest)
-                    .header("Authorization", "Bearer " + USER_TOKEN)
+                    .header("Authorization", "Bearer " + cookies.getToken())
                     .body(request)
 
                     .when()

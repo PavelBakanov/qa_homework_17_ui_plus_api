@@ -4,8 +4,7 @@ import models.GetListOfBooksResponseModel;
 import models.LoginRequestModel;
 import models.LoginResponseModel;
 
-import static data.AuthData.USER_ID;
-import static data.AuthData.USER_TOKEN;
+import static helpers.extensions.LoginExtension.cookies;
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static specs.DemoQaBookStoreSpecifications.*;
@@ -37,11 +36,11 @@ public class AccountApi {
         GetListOfBooksResponseModel response;
         response = step("Сделать запрос списка книг в корзине, и записать его в переменную", () ->
                 given(demoQaBookStoreCommonRequest)
-                        .header("Authorization", "Bearer " + USER_TOKEN)
-                        .queryParam("UserId", USER_ID)
+                        .header("Authorization", "Bearer " + cookies.getToken())
+                        .queryParam("UserId", cookies.getUserId())
 
                         .when()
-                        .get("/Account/v1/User/" + USER_ID)
+                        .get("/Account/v1/User/" + cookies.getUserId())
 
                         .then()
                         .spec(responseLogging)
