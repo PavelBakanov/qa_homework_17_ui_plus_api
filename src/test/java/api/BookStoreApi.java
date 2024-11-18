@@ -32,12 +32,8 @@ public class BookStoreApi {
 
     public static void addBookToList(String isbn) {
 
-        AddListOfBooksRequestModel request = new AddListOfBooksRequestModel();
-        IsbnModel isbnModel = new IsbnModel();
-        isbnModel.setIsbn(isbn);
-        request.setUserId(cookies.getUserId());
-        request.setCollectionOfIsbns(List.of(isbnModel));
-
+        IsbnModel isbnModel = new IsbnModel(isbn);
+        AddListOfBooksRequestModel request = new AddListOfBooksRequestModel(cookies.getUserId(), List.of(isbnModel));
 
         step("Сделать запрос добавления книги в корзину", () -> {
             given(demoQaBookStoreWithJsonRequest)
