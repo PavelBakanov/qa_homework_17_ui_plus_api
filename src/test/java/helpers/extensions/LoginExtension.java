@@ -30,7 +30,7 @@ public class LoginExtension implements BeforeEachCallback {
 
         step("Проверить успешный вход в учетную запись", () -> {
                     open("/profile");
-                    $("#userName-value").shouldHave(text(System.getProperty("bookStoreLogin")));
+                    $("#userName-value").scrollTo().shouldHave(text(System.getProperty("bookStoreLogin")));
                 }
         );
 
